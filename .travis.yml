@@ -2,4 +2,18 @@ sudo: required
 services:
 - docker
 language: bash
+branches:
+  except:
+  - "/\\+travis\\.\\d+$/"
 script: bash scripts/travis-build.bash
+env:
+  global:
+  - secure: PxAczknl9UwnJU41e91fOgnWNpm2SPXXS6FUVfu9e26oncn3qCMgHuhg41ut7+3N5x/eqIv86phPh++4xNfwHpz5vNZJG5uw3nojDSMc4ELb76i/fxoDEkZOBP6/B+RpOX+I7S2y4egv6ipPY4Ww8tF9Ej2EVMfCDWlJEeKWlIzdfotRlmkjatqcjOHfLPY9a2OkRsaKjCIi97FCkktxDXgEv+GHaa7ZGUFDQvSKUKjJJh/7gzBaiAXWNtFyct+hU9QwM47CVQPhErBYhKp7ZgF0qeNUKN3HuWsn2HZJKXpnHDgk/dXjRkIHw0Jblo/+YXbdh919+VRw2cpl7f73tsZeYqxEkUH/Sdx50nBOBvq3k6jqJNr5cmbZ9NkEBnIoTfEAk7uDR32bJo01KXce94M8vPyfq36UqZ5bB1XR0N4K6oPtrtZoxKqB92gyD3QOJCwYE6Vu2BdB/oQh+QCSV+7h+cctfM2YV21nNqcF7ma2+ygI7bdS5doS6QQ5fWgJdzljKliXgsUBoHj9vtnSt9wpVCrdvzbmIT50A7K6j0vBR5jiBv2V1xIvRc+qRYgfTAeHTX6NPGGotBqQcA12Z9V3ru3S1roP2VXB1B9LBsjQlVpahmA7danUAJkyZ1OkOqZFf2g+6A8JVivV73Kh55PI44DArdxhOyqO+gBQfIE=
+  - DOCKER_USER=ddgenome
+  - secure: QYuNjNp3dHlUobWyY3XHr896koFbw4T963QseV0ceFvaZMmKLvdDUzmKfpzL/TXck88eTIf/uiQ3j/+Bxze1v/ZIMpjCNWur73pM51TZcQjEdQ5zsmesYmlpOkDYK1vDvItfp+luPRCrfqCI01Vl8XjH+qUPm6gZnbWLfwxpudWm0OojNLDtYTEV/XYHsNmdFodgwtuoedr4+d16LnVdT4Vq+OP+yHl7mjljjh18hnnymDXTgNMZ26rDt63zP3LnKJJOImT1U/ZkvpFAw9K9BrZgL+Vs8optmz1f7aFrNkbu4PSBhxamoT4GTF/t7//LakQhLB3yS3abHv/f2dx9NtvRZo3/vGAHSu3FBEEoKjslsgzQiXD3OJ9/zwSqbfjWk7B8N1a/gKe5hyaToC971LCsHELO0g5BdrLWmXeupeYlA4Aqch/U6cDUx3abv4dlaqQpKnmEM0E3xsK/KESY8yFt0t6ESj8Had5Z+beSAkm+ptSg6c5Gd6ezVU2j/OOHrRDyiiiHpecd5DZk1IKPK/Ox23zW/7bUxZHvzoUj0COyuLV1j8LI4YLhMhxhEXa3lFBCZfhBdctZfogd/WKrxukaclnWo6dxFhbSorZuYNZewZEz/m8dT+SwoRtv1Tx7+gPJo4Gvh1MYDFvno0vELdenHH2BRTpk3zUTmge6zuA=
+deploy:
+- provider: releases
+  api_key: "$GITHUB_TOKEN"
+  on:
+    tags: true
+    condition: "$TRAVIS_TAG =~ ^[0-9]+\\.[0-9]+\\.[0-9]+$"
