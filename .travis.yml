@@ -1,0 +1,8 @@
+sudo: required
+services:
+- docker
+language: bash
+script:
+- docker run --rm --privileged multiarch/qemu-user-static:register --reset
+- docker build -t $TRAVIS_REPO_SLUG .
+- docker run --rm $TRAVIS_REPO_SLUG gcloud --version

@@ -1,4 +1,4 @@
-FROM arm32v7/debian:jessie
+FROM resin/rpi-raspbian:jessie
 
 MAINTAINER David Dooling <dooling@gmail.com>
 
