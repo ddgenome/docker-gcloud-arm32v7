@@ -15,15 +15,17 @@ from the [Google Cloud SDK APT repository][apt].
 You can run this image directly:
 
 ```console
-$ docker run -it --rm ddgenome/gcloud-arm32v7
+$ docker run -it --rm ddgenome/gcloud-arm32v7:VERSION
 ```
 
 or build a new image from it by using it as the `FROM` image in your
-Dockerfile.
+Dockerfile
 
 ```dockerfile
-FROM ddgenome/gcloud-arm32v7
+FROM ddgenome/gcloud-arm32v7:VERSION
 ```
+
+replacing `VERSION` with the version you want to run.
 
 ## Building
 
