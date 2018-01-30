@@ -10,4 +10,7 @@ COPY google-cloud-sdk.list /etc/apt/sources.list.d/google-cloud-sdk.list
 
 RUN apt-get update && apt-get install -y \
         google-cloud-sdk \
+        gcc python-dev python-setuptools python-pip \
     && rm -rf /var/lib/apt/lists/*
+
+RUN pip uninstall crcmod && pip install -U crcmod
