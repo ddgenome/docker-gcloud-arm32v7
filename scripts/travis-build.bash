@@ -20,13 +20,12 @@ function main () {
         return 1
     fi
 
-    local docker_tag=$TRAVIS_REPO_SLUG
+    local commit=$TRAVIS_COMMIT
     if [[ $TRAVIS_TAG =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-        docker_tag=$docker_tag:$TRAVIS_TAG
-    else
-        docker_tag=$docker_tag:$TRAVIS_COMMIT
+        commit=$TRAVIS_TAG
     fi
 
+    local docker_tag=$TRAVIS_REPO_SLUG:$commit
     if ! docker build -t "$docker_tag" .; then
         err "docker build of '$docker_tag' failed"
         return 1
@@ -43,7 +42,7 @@ function main () {
         fi
     fi
 
-    local git_tag=$docker_tag+travis.$TRAVIS_BUILD_NUMBER
+    local git_tag=$commit+travis.$TRAVIS_BUILD_NUMBER
     if ! git config --global user.email "deploy@travis-ci.org"; then
         err "failed to set git user email"
         return 1
