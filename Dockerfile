@@ -13,4 +13,4 @@ RUN apt-get update && apt-get install -y \
         gcc python-dev python-setuptools python-pip \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip uninstall crcmod && pip install -U crcmod
+RUN pip uninstall -y crcmod ; pip install -y -U crcmod
