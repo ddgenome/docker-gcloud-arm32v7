@@ -18,6 +18,7 @@ Trickle Release
 ### Added
 
 -   trickle binary to help throttle traffic
+    https://cloud.google.com/storage/docs/gsutil/addlhelp/Throttlinggsutil
 
 ## [0.2.0][] - 2018-01-29
 
